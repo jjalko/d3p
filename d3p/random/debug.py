@@ -19,6 +19,7 @@ cryptographically secure and should not be used in production settings, but
 runs faster than the secure variant and thus can be used to speed up debugging runs.
 """
 
+import jax
 import jax.numpy as jnp
 from typing import Optional
 import secrets
@@ -31,9 +32,13 @@ try:
 except (AttributeError, ImportError):
     from jax._src.random import IntegerArray as PRNGState
 
+if jax.__version__ >= '0.10.2':
+    from jax._src.random.core import _random_bits as _random_bits
+else:
+    from jax._src.random import _random_bits as _random_bits
+
 split = jrng.split
 fold_in = jrng.fold_in
-from jax._src.random import _random_bits as _random_bits
 uniform = jrng.uniform
 normal = jrng.normal
 randint = jrng.randint
