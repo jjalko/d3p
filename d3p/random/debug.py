@@ -23,6 +23,7 @@ import secrets
 import warnings
 from functools import partial
 from typing import Optional
+from packaging.version import Version
 
 import jax
 import jax.numpy as jnp
@@ -33,7 +34,7 @@ try:
 except (AttributeError, ImportError):
     from jax._src.random import IntegerArray as PRNGState
 
-if jax.__version__ >= "0.10.2":
+if Version(jax.__version__) >= Version("0.10.2"):
     from jax._src.random.core import _check_prng_key
     from jax._src.random.core import _random_bits as _random_bits
 
