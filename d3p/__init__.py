@@ -17,8 +17,7 @@ import jax
 import numpyro
 import logging
 
-try:
-    jax.lib.xla_bridge.get_backend('gpu')  # this will fail if gpu not available
-    numpyro.set_platform('gpu')
-except RuntimeError:
+if "gpu" in jax.devices():
+    numpyro.set_platform("gpu")
+else:
     logging.info("GPU not available. Falling back to CPU.")
