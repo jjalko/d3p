@@ -24,8 +24,8 @@ _numpyro_version_lower_constraint = '>=0.8.0'
 _numpyro_version_optimistic_upper_constraint = ', < 2.0.0'
 
 _compatible_dependencies = [
-    "numpyro<=0.11.0",
-    "jax[cpu]<=0.4.10",
+    "numpyro<=0.21.0",
+    "jax[cpu]<=0.10.2",
 ]
 if sys.version_info.minor == 7:
     _compatible_dependencies = [
@@ -46,7 +46,8 @@ setup(
         f'numpyro[cpu] {_numpyro_version_lower_constraint}{_numpyro_version_optimistic_upper_constraint}',
         'jax >= 0.2.20',
         'fourier-accountant >= 0.12.0, < 1.0.0',
-        'jax-chacha-prng >= 1, < 2',
+        # 'jax-chacha-prng >= 1, < 2',
+        'jax-chacha-prng @ git+https://github.com/DPBayes/jax-chacha-prng@master',
     ],
     extras_require={
         'examples': ['matplotlib'],
