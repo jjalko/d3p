@@ -21,12 +21,14 @@ from packaging.version import Version
 if Version(jax.__version__) >= Version("0.4.5"):
     try:
         jax.devices(backend="gpu")
+        numpyro.set_platform('gpu')
     except RuntimeError:
         logging.info("GPU not available. Falling back to CPU.")
 
 else:
     try:
         jax.lib.xla_bridge.get_backend("gpu")
+        numpyro.set_platform('gpu')
     except RuntimeError:
         logging.info("GPU not available. Falling back to CPU.")
 
