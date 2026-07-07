@@ -37,7 +37,7 @@ print(_compatible_dependencies)
 
 setup(
     name='d3p',
-    python_requires='>=3.7',
+    python_requires='>=3.12',
     version=_version,
     description='Differentially-Private Probabilistic Programming using NumPyro and the differentially-private variational inference algorithm',
     packages=find_packages(include=['d3p', 'd3p.*']),
